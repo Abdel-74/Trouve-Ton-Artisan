@@ -1,0 +1,29 @@
+.home {
+    .steps-section, .artisans-section {
+        background: linear-gradient(180deg, #0074C7 0%, #F1F8FC 100%);
+        padding: 2rem 0;
+    }
+
+    .step-card{
+        .step-title{
+            color: #cd2c2e;
+            font-weight: bold;
+        }
+    }
+
+    .step-card, .artisan-card {
+        background-color: #F1F8FC;
+        border: none;
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+        color: #000000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .steps-section {
+        .step-card {
+            margin-bottom: 2rem;
+        }
+    }
+}

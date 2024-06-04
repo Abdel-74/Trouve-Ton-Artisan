@@ -1,0 +1,26 @@
+.star-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .star {
+        font-size: 1.2rem;
+        margin-right: 0.2rem;
+
+        &.full {
+            color: #f8ce0b; // Couleur pour les étoiles pleines
+        }
+
+        &.half {
+            color: #f8ce0b; // Couleur pour l'étoile à moitié pleine
+            background: linear-gradient(90deg, #f8ce0b 50%, #e4e5e9 50%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        &.empty {
+            color: #e4e5e9; // Couleur pour les étoiles vides
+        }
+    }
+}
