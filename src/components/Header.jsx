@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Navbar, Nav, Form, FormControl } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
+import { SearchContext } from './SearchContex';
 
 const Header = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { searchTerm, setSearchTerm } = useContext(SearchContext);
+
+    useEffect(() => {
+        setSearchTerm('');
+    }, [location.pathname, setSearchTerm]);
+
+    const handleCategoryClick = (category) => {
+        navigate(`/artisanlist?category=${category}`);
+    };
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchTerm) {
+            navigate(`/artisanlist?search=${searchTerm}`);
+        }
+    };
+
     return (
         <Navbar expand="lg" className="header-navbar">
             <div className="d-flex w-100 justify-content-between align-items-center flex-wrap">
-                <Navbar.Brand href="#home" className="logo-container">
+                <Link to="/" className="logo-container">
                     <img
                         src={`${process.env.PUBLIC_URL}/images/Logo.png`}
                         className="logo"
                         alt="Logo"
                     />
-                </Navbar.Brand>
+                </Link>
                 <div className="menu-toggle-container">
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <div className="menu-text d-lg-none">Menu</div>
@@ -25,24 +50,32 @@ const Header = () => {
                 <Nav className="mr-auto w-100">
                     <ul className="navbar-nav w-100 d-flex justify-content-around flex-column flex-lg-row">
                         <li className="nav-item">
-                            <a className="nav-link" href="#batiment">Bâtiment</a>
+                            <div className="nav-link" onClick={() => handleCategoryClick('bâtiment')}>Bâtiment</div>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#services">Services</a>
+                            <div className="nav-link" onClick={() => handleCategoryClick('services')}>Services</div>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#fabrication">Fabrication</a>
+                            <div className="nav-link" onClick={() => handleCategoryClick('fabrication')}>Fabrication</div>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#alimentation">Alimentation</a>
+                            <div className="nav-link" onClick={() => handleCategoryClick('alimentation')}>Alimentation</div>
                         </li>
                     </ul>
                 </Nav>
             </Navbar.Collapse>
             
-            <Form inline className="search-form mt-3 mt-lg-0 d-flex w-50 justify-content-between align-items-center mx-auto">
-                <FormControl type="text" placeholder="Recherche" className="mr-sm-2" />
-                <FontAwesomeIcon icon={faSearch} className="search-icon" />
+            <Form inline className="search-form mt-3 mt-lg-0 d-flex w-50 justify-content-between align-items-center mx-auto" onSubmit={handleSearchSubmit}>
+                <FormControl
+                    type="text"
+                    placeholder="Recherche"
+                    className="mr-sm-2"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+                <button type="submit" className="search-button">
+                    <FontAwesomeIcon icon={faSearch} className="search-icon" />
+                </button>
             </Form>
         </Navbar>
     );

@@ -40,6 +40,7 @@ $main-color: #00497c;
             .nav-link {
                 color: $main-color;
                 padding: 0.5rem 1rem;
+                cursor: pointer;
 
                 &:hover {
                     color: darken($main-color, 15%);
@@ -76,14 +77,20 @@ $main-color: #00497c;
             color: $main-color;
         }
 
-        .search-icon {
-            color: $main-color;
-            margin-left: 0.5rem;
+        .search-button {
+            background: none;
+            border: none;
+            padding: 0;
             cursor: pointer;
-            font-size: 1.5rem; 
-
-            &:hover {
-                color: darken($main-color, 15%);
+            
+            .search-icon {
+                color: $main-color;
+                margin-left: 0.5rem;
+                font-size: 1.5rem;
+    
+                &:hover {
+                    color: darken($main-color, 15%);
+                }
             }
         }
     }

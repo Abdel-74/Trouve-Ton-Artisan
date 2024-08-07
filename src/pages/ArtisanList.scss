@@ -1,0 +1,89 @@
+.artisan-list-page {
+    .search-section {
+        padding: 2rem;
+        text-align: center;
+        color: #ffffff;
+
+        .search-bar-container {
+            margin: 1rem 0;
+            p {
+                margin-bottom: 1rem;
+            }
+            .search-bar {
+                position: relative;
+                display: inline-block;
+                background-color: #ffffff;
+                width: 100%; 
+                max-width: 600px; 
+                margin: 0 auto; 
+                border-radius: 4px;
+
+                .search-form {
+                    display: flex; 
+                    align-items: center;
+                }
+
+                .search-input {
+                    flex: 1; 
+                    padding: 0.5rem;
+                    border: 1px solid #ccc;
+                    border-radius: 0.25rem;
+                    border-top-right-radius: 0; 
+                    border-bottom-right-radius: 0; 
+                }
+
+                .search-button {
+                    padding: 0.5rem; 
+                    background: none;
+                    border: 1px solid #ccc;
+                    border-left: 0;
+                    border-radius: 0.25rem;
+                    border-top-left-radius: 0; 
+                    border-bottom-left-radius: 0; 
+                    cursor: pointer;
+
+                    .search-icon {
+                        color: #0074C7;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .artisan-list-section {
+        background: linear-gradient(180deg, #0074C7 0%, #F1F8FC 100%);
+        padding: 2rem;
+        color: #000000;
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        .artisan-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+
+            .artisan-card {
+                background-color: #F1F8FC;
+                padding: 1rem;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: transform 0.2s;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+
+                h3 {
+                    margin-bottom: 0.5rem;
+                }
+
+                p {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

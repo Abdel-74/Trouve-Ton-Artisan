@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import StarRating from '../components/StarRating';
 import './Home.scss';
 import datas from '../data/datas.json';
 
 const Home = () => {
     const [topArtisans, setTopArtisans] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Filtrer top artisans
         const filteredArtisans = datas.filter(artisan => artisan.top === true);
         setTopArtisans(filteredArtisans);
     }, []);
+
+    const handleArtisanClick = (id) => {
+        navigate(`/artisan/${id}`);
+        window.scrollTo(0, 0);
+    };
 
     return (
         <div className="home">
@@ -78,17 +85,22 @@ const Home = () => {
                     <Row>
                         {topArtisans.map((artisan) => (
                             <Col xs={12} md={6} lg={4} key={artisan.id} className="mb-4">
-                                <Card className="artisan-card">
-                                    <Card.Body>
-                                        <Card.Title>{artisan.name}</Card.Title>
-                                        <StarRating rating={parseFloat(artisan.note)} />
-                                        <Card.Text>
-                                            <span className="specialty"><strong>Spécialité:</strong> {artisan.specialty}</span>
-                                            <br />
-                                            <span className="location"><strong>Localisation:</strong> {artisan.location}</span>
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
+                                <div
+                                key={artisan.id}
+                                onClick={() => handleArtisanClick(artisan.id)}
+                                >
+                                    <Card className="artisan-card">
+                                        <Card.Body>
+                                            <Card.Title>{artisan.name}</Card.Title>
+                                            <StarRating rating={parseFloat(artisan.note)} />
+                                            <Card.Text>
+                                                <span className="specialty"><strong>Spécialité:</strong> {artisan.specialty}</span>
+                                                <br />
+                                                <span className="location"><strong>Localisation:</strong> {artisan.location}</span>
+                                            </Card.Text>
+                                        </Card.Body>
+                                    </Card>
+                                </div>
                             </Col>
                         ))}
                     </Row>
