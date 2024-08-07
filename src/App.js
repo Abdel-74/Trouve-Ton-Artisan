@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import ArtisanList from './pages/ArtisanList';
 import ArtisanDetails from './pages/ArtisanDetails';
+import NotFound from './components/NotFound';
 import { SearchProvider } from './components/SearchContex';
 
 
@@ -17,6 +18,7 @@ function App() {
                     <Route path='/' element={<Home/>}></Route>
                     <Route path='/artisanlist' element={<ArtisanList/>}></Route>
                     <Route path="/artisan/:id" element={<ArtisanDetails />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />
             </SearchProvider>
